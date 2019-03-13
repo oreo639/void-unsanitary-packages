@@ -28,6 +28,6 @@ fi
 for element in "${packages[@]}"
 do
 	echo "Adding $element..."
-	ln -s $SOURCE/templates/$element $SOURCE/void-packages/srcpkgs/$element 
+	cp -r $SOURCE/templates/$element $SOURCE/void-packages/srcpkgs/$element 
 done
 
