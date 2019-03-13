@@ -1,0 +1,8 @@
+# Configure devkitpro-pacman.
+
+case ${ACTION} in
+post)
+	dkp-pacman-key --init
+	dkp-pacman-key --populate devkitpro
+	dkp-pacman -Syy
+esac
