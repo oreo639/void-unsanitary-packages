@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOURCE=$PWD
+SOURCE=$(dirname "$0")
 
 packages=("devkitpro-pacman")
 
