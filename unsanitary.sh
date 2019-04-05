@@ -15,7 +15,7 @@ fi
 
 if [ -d "$SOURCE/void-packages" ]; then
 	echo '=> Updating void-packages. '
-	cd "$SOURCE/void-packages"
+	pushd "$SOURCE/void-packages" &>/dev/null
 	rm -R "$SOURCE/void-packages/srcpkgs/*" &>/dev/null
 	git checkout .
 	git pull origin master
@@ -24,6 +24,8 @@ else
 	rm void-packages &>/dev/null
 	git clone https://github.com/void-linux/void-packages "$SOURCE/void-packages"
 fi
+
+popd &>/dev/null
 
 for element in "${packages[@]}"
 do
