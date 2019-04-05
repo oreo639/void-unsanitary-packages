@@ -1,9 +1,12 @@
 # Template file for 'devkitpro-pacman'
 pkgname=devkitpro-pacman
 version=1.0.1
-revision=2
+revision=3
 wrksrc="pacman-devkitpro-pacman-${version}"
-build_style=gnu-configure
+configure_args="--disable-doc --disable-shared --prefix=/opt/devkitpro/pacman
+ --with-crypto=nettle --with-pkg-ext=.pkg.tar.xz --with-src-ext=.src.tar.xz
+ --with-makepkg-template-dir=/opt/devkitpro/pacman/share/makepkg-template"
+build_style=configure
 hostmakedepends="autoconf automake libtool gettext-devel pkg-config"
 makedepends="libarchive-devel nettle-devel gpgme-devel libcurl-devel"
 short_desc="Nintendo Homebrew package manager"
@@ -13,18 +16,12 @@ homepage="https://www.devkitpro.org/"
 distfiles="https://github.com/devkitPro/pacman/archive/devkitpro-pacman-${version}.tar.gz"
 checksum=f5dd7e38f6ef6708a474a2ca7068a21bf94cff6584ed826e0d32aa3edf1c64ea
 
-do_configure() {
-	./autogen.sh
-	./configure --prefix=/opt/devkitpro/pacman --disable-shared --disable-doc \
- --with-crypto=nettle --with-makepkg-template-dir=/opt/devkitpro/pacman/share/makepkg-template \
- --with-pkg-ext=.pkg.tar.xz --with-src-ext=.src.tar.xz
+pre_configure() {
+	autoreconf -fi
 }
 
 post_install() {
-	touch $DESTDIR/opt/devkitpro/pacman/var/lib/pacman/nodel
-	touch $DESTDIR/opt/devkitpro/pacman/var/cache/pacman/pkg/nodel
-	touch $DESTDIR/opt/devkitpro/pacman/share/makepkg-template/nodel
-	ln -s /usr/share/pacman/keyrings $DESTDIR/opt/devkitpro/pacman/share/pacman
+	ln -s /usr/share/pacman/keyrings "$DESTDIR/opt/devkitpro/pacman/share/pacman"
 	vmkdir usr
 	vmkdir usr/bin
 	vcopy $FILESDIR/dkp-* usr/bin
