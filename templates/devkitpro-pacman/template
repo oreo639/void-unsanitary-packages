@@ -1,8 +1,13 @@
 # Template file for 'devkitpro-pacman'
 pkgname=devkitpro-pacman
 version=1.0.1
-revision=3
+revision=4
 wrksrc="pacman-devkitpro-pacman-${version}"
+make_dirs="/opt/devkitpro/pacman/var/lib/pacman 0755 root root
+ /opt/devkitpro/pacman/var/cache/pacman/pkg 0755 root root
+ /opt/devkitpro/pacman/share/makepkg-template 0755 root root
+ /opt/devkitpro/pacman/share/libalpm/hooks 0755 root root
+ /usr/share/pacman/keyrings 0755 root root"
 configure_args="--disable-doc --disable-shared --prefix=/opt/devkitpro/pacman
  --with-crypto=nettle --with-pkg-ext=.pkg.tar.xz --with-src-ext=.src.tar.xz
  --with-makepkg-template-dir=/opt/devkitpro/pacman/share/makepkg-template"
