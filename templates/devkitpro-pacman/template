@@ -29,5 +29,5 @@ post_install() {
 	ln -s /usr/share/pacman/keyrings "$DESTDIR/opt/devkitpro/pacman/share/pacman"
 	vmkdir usr
 	vmkdir usr/bin
-	vcopy $FILESDIR/dkp-* usr/bin
+	vbin $FILESDIR/dkp-*
 }
