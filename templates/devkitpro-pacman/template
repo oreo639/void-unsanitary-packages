@@ -29,5 +29,7 @@ post_install() {
 	ln -s /usr/share/pacman/keyrings "$DESTDIR/opt/devkitpro/pacman/share/pacman"
 	vmkdir usr
 	vmkdir usr/bin
-	vbin $FILESDIR/dkp-*
+	for in in dkp-makepkg dkp-pacman dkp-pacman-key dkp-repo-add dkp-repo-remove; do
+		vbin "$FILESDIR/$in"
+	done
 }
