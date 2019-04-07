@@ -1,17 +1,18 @@
 # Configure devkitpro-pacman.
-
-case ${ACTION} in
-post)
-	# Go through a bit of gymnastics to get the devkitpro-keyring package installed.
-	PREDIR=$PWD
-	cd /usr/share/pacman/keyrings/
-	wget https://downloads.devkitpro.org/devkitpro-keyring-r1.787e015-2-any.pkg.tar.xz
-	tar -x --no-same-permissions --no-same-owner -f devkitpro-keyring-r1.787e015-2-any.pkg.tar.xz
-	mv usr/share/pacman/keyrings/* .
-	cd $PREDIR
-	dkp-pacman-key --init
-	dkp-pacman-key --populate devkitpro
-	dkp-pacman -Syy
-	rm -r /usr/share/pacman/keyrings/*
-	dkp-pacman -S devkitpro-keyring --noconfirm
-esac
+if [ "$UPDATE" = "no" ] || [ ! "$(ls -A /usr/share/pacman/keyrings)" ]; then
+	case ${ACTION} in
+	post)
+		# Go through a bit of gymnastics to get the devkitpro-keyring package installed.
+		PREDIR=$PWD
+		cd /usr/share/pacman/keyrings/
+		wget https://downloads.devkitpro.org/devkitpro-keyring-r1.787e015-2-any.pkg.tar.xz
+		tar -x --no-same-permissions --no-same-owner -f devkitpro-keyring-r1.787e015-2-any.pkg.tar.xz
+		mv usr/share/pacman/keyrings/* .
+		cd $PREDIR
+		dkp-pacman-key --init
+		dkp-pacman-key --populate devkitpro
+		dkp-pacman -Syy
+		rm -r /usr/share/pacman/keyrings/*
+		dkp-pacman -S devkitpro-keyring --noconfirm
+	esac
+fi
