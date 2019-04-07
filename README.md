@@ -8,5 +8,5 @@ If you need to update void-packages, just simply rerun `unsanitary.sh`. (WARNING
 
 ## Templates
 ```
-devkitpro-pacman-1.0.1_2
+devkitpro-pacman-1.0.1
 ```
