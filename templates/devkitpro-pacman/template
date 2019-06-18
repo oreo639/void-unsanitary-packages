@@ -1,7 +1,7 @@
 # Template file for 'devkitpro-pacman'
 pkgname=devkitpro-pacman
 version=5.1.3
-revision=1
+revision=2
 wrksrc="pacman-${version}"
 make_dirs="/opt/devkitpro/pacman/var/lib/pacman 0755 root root
  /opt/devkitpro/pacman/var/cache/pacman/pkg 0755 root root
@@ -14,6 +14,7 @@ configure_args="--disable-doc --disable-shared --prefix=/opt/devkitpro/pacman
 build_style=configure
 hostmakedepends="autoconf automake libtool gettext-devel pkg-config"
 makedepends="libarchive-devel nettle-devel gpgme-devel libcurl-devel"
+depends="gnupg"
 short_desc="Nintendo Homebrew package manager"
 maintainer="oreo639 <oreo6391@gmail.com>"
 license="GPL-3.0-or-later"
