@@ -22,6 +22,17 @@ homepage="https://www.devkitpro.org/"
 distfiles="https://sources.archlinux.org/other/pacman/pacman-${version}.tar.gz"
 checksum=10db61a0928d619871340c3f93a677d1541d6c52353c516aec4f8d96e830d4eb
 
+pre_configure() {
+	case "$XBPS_TARGET_MACHINE" in
+		x86_64)
+			patch -Np0 -i ${FILESDIR}/repo-glibc.patch
+			;;
+		*musl)
+			patch -Np0 -i ${FILESDIR}/repo-musl.patch
+			;;
+	esac
+}
+
 post_install() {
 	ln -s /usr/share/pacman/keyrings "$DESTDIR/opt/devkitpro/pacman/share/pacman"
 	vmkdir usr
