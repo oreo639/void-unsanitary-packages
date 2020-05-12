@@ -27,7 +27,7 @@ pre_configure() {
 		x86_64)
 			patch -Np0 -i ${FILESDIR}/repo-glibc.patch
 			;;
-		*musl)
+		*)
 			patch -Np0 -i ${FILESDIR}/repo-musl.patch
 			;;
 	esac
