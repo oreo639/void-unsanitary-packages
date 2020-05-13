@@ -1,7 +1,7 @@
 # Template file for 'devkitpro-pacman'
 pkgname=devkitpro-pacman
 version=5.1.3
-revision=4
+revision=5
 wrksrc="pacman-${version}"
 make_dirs="/opt/devkitpro/pacman/var/lib/pacman 0755 root root
  /opt/devkitpro/pacman/var/cache/pacman/pkg 0755 root root

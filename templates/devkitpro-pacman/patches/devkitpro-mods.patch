@@ -2,15 +2,6 @@ diff --git a/lib/libalpm/add.c b/lib/libalpm/add.c
 index 0beed01c..860d0803 100644
 --- lib/libalpm/add.c
 +++ lib/libalpm/add.c
-@@ -111,7 +111,7 @@ static int perform_extraction(alpm_handle_t *handle, struct archive *archive,
- {
- 	int ret;
- 	struct archive *archive_writer;
--	const int archive_flags = ARCHIVE_EXTRACT_OWNER |
-+	const int archive_flags = /*ARCHIVE_EXTRACT_OWNER |*/\
- 	                          ARCHIVE_EXTRACT_PERM |
- 	                          ARCHIVE_EXTRACT_TIME |
- 	                          ARCHIVE_EXTRACT_UNLINK |
 @@ -656,7 +656,7 @@ static int commit_single_pkg(alpm_handle_t *handle, alpm_pkg_t *newpkg,
  int _alpm_upgrade_packages(alpm_handle_t *handle)
  {
@@ -20,6 +11,7 @@ index 0beed01c..860d0803 100644
  	alpm_list_t *targ;
  	alpm_trans_t *trans = handle->trans;
  
+
 diff --git a/lib/libalpm/remove.c b/lib/libalpm/remove.c
 index ffe92518..c21072f5 100644
 --- lib/libalpm/remove.c
