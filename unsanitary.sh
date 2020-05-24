@@ -2,7 +2,9 @@
 
 SOURCE=$(dirname "$0")
 
-packages=("devkitpro-pacman")
+packages=(
+ "devkitpro-pacman"
+)
 
 if [ -z "$SOURCE" ]; then
 	echo '=> Fatal error: Could not get the source directory. '
@@ -16,7 +18,13 @@ fi
 if [ -d "$SOURCE/void-packages" ]; then
 	echo '=> Updating void-packages. '
 	pushd "$SOURCE/void-packages" &>/dev/null
-	rm -R "$SOURCE/void-packages/srcpkgs/"* &>/dev/null
+
+	for element in "${packages[@]}"
+	do
+		echo "=> Clearing $element... "
+		rm -R "srcpkgs/$element"
+	done
+
 	git checkout .
 	git pull origin master
 else
@@ -30,6 +38,6 @@ popd &>/dev/null
 for element in "${packages[@]}"
 do
 	echo "=> Adding $element... "
-	cp -rp "$SOURCE/templates/$element" "$SOURCE/void-packages/srcpkgs/"
+	cp -r "$SOURCE/templates/$element" "$SOURCE/void-packages/srcpkgs/"
 done
 
