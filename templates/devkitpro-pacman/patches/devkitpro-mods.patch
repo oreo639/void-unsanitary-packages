@@ -48,7 +48,7 @@ index 5bf6c7a1..ad84368e 100644
  IMPORT_TRUSTDB=0
  INIT=0
 -KEYSERVER=''
-+KEYSERVER='hkp://keys.gnupg.net'
++KEYSERVER='hkp://keyserver.ubuntu.com:80'
  LISTKEYS=0
  LISTSIGS=0
  LSIGNKEY=0

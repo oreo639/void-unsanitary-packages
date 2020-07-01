@@ -1,6 +1,6 @@
 # Template file for 'devkitpro-pacman'
 pkgname=devkitpro-pacman
-version=5.2.1
+version=5.2.2
 revision=1
 wrksrc="pacman-${version}"
 make_dirs="/opt/devkitpro/pacman/var/lib/pacman 0755 root root
@@ -20,13 +20,13 @@ maintainer="oreo639 <oreo6391@gmail.com>"
 license="GPL-2.0-or-later"
 homepage="https://www.devkitpro.org/"
 distfiles="https://sources.archlinux.org/other/pacman/pacman-${version}.tar.gz"
-checksum=1930c407265fd039cb3a8e6edc82f69e122aa9239d216d9d57b9d1b9315af312
+checksum=bb201a9f2fb53c28d011f661d50028efce6eef2c1d2a36728bdd0130189349a0
 
 conflicts="pacman"
 
 pre_configure() {
 	case "$XBPS_TARGET_MACHINE" in
-		x86_64)
+		x86_64|aarch64)
 			patch -Np0 -i ${FILESDIR}/repo-glibc.patch
 			;;
 		*)
