@@ -25,6 +25,8 @@ if [ -d "$SOURCE/void-packages" ]; then
 		rm -R "srcpkgs/$element"
 	done
 
+	echo "=> Updating repo "
+
 	git checkout .
 	git pull origin master
 else
