@@ -1,45 +1,9 @@
 # Template file for 'devkitpro-pacman'
 pkgname=devkitpro-pacman
 version=5.2.2
-revision=1
-wrksrc="pacman-${version}"
-make_dirs="/opt/devkitpro/pacman/var/lib/pacman 0755 root root
- /opt/devkitpro/pacman/var/cache/pacman/pkg 0755 root root
- /opt/devkitpro/pacman/share/makepkg-template 0755 root root
- /opt/devkitpro/pacman/share/libalpm/hooks 0755 root root
- /usr/share/pacman/keyrings 0755 root root"
-configure_args="--disable-doc --disable-shared --prefix=/opt/devkitpro/pacman
- --with-crypto=nettle --with-pkg-ext=.pkg.tar.xz --with-src-ext=.src.tar.xz
- --with-makepkg-template-dir=/opt/devkitpro/pacman/share/makepkg-template"
-build_style=configure
-hostmakedepends="autoconf automake libtool gettext-devel pkg-config"
-makedepends="libarchive-devel nettle-devel gpgme-devel libcurl-devel"
-depends="gnupg"
-short_desc="Nintendo Homebrew package manager"
+revision=2
+build_style=meta
+short_desc="Nintendo Homebrew package manager (transitional dummy package)"
 maintainer="oreo639 <oreo6391@gmail.com>"
 license="GPL-2.0-or-later"
 homepage="https://www.devkitpro.org/"
-distfiles="https://sources.archlinux.org/other/pacman/pacman-${version}.tar.gz"
-checksum=bb201a9f2fb53c28d011f661d50028efce6eef2c1d2a36728bdd0130189349a0
-
-conflicts="pacman"
-
-pre_configure() {
-	case "$XBPS_TARGET_MACHINE" in
-		x86_64|aarch64)
-			patch -Np0 -i ${FILESDIR}/repo-glibc.patch
-			;;
-		*)
-			patch -Np0 -i ${FILESDIR}/repo-musl.patch
-			;;
-	esac
-}
-
-post_install() {
-	ln -s /usr/share/pacman/keyrings "$DESTDIR/opt/devkitpro/pacman/share/pacman"
-	vmkdir usr
-	vmkdir usr/bin
-	for f in dkp-makepkg dkp-pacman dkp-pacman-key dkp-repo-add dkp-repo-remove; do
-		vbin "$FILESDIR/$f"
-	done
-}
