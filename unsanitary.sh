@@ -40,6 +40,10 @@ popd &>/dev/null
 for element in "${packages[@]}"
 do
 	echo "=> Adding $element... "
+	rm -rf "$SOURCE/void-packages/srcpkgs/$element"
 	cp -r "$SOURCE/templates/$element" "$SOURCE/void-packages/srcpkgs/"
 done
 
+if [ -f "$SOURCE/templates/shlibs" ]; then
+	cat "$SOURCE/templates/shlibs" >> "$SOURCE/void-packages/common/shlibs"
+fi
