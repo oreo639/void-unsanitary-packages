@@ -4,6 +4,7 @@ SOURCE=$(dirname "$0")
 
 packages=(
  "devkitpro-pacman"
+ "yoga-usage-mode"
 )
 
 if [ -z "$SOURCE" ]; then

@@ -1,0 +1,23 @@
+# Template file for 'yoga-usage-mode'
+pkgname=yoga-usage-mode
+version=0
+_gitVer=3ada633415a005269b8baa28353c5be0a37f3360
+revision=1
+archs="i686 x86_64*"
+wrksrc=yoga-usage-mode-${_gitVer}
+short_desc="ACPI driver Linux kernel module for Yoga to detect SW_TABLET_MODE"
+maintainer="oreo639 <oreo6391@gmail.com>"
+license="MIT"
+homepage="https://github.com/lukas-w/yoga-usage-mode"
+distfiles="https://github.com/lukas-w/yoga-usage-mode/archive/${_gitVer}.zip"
+checksum=5a505f8a08a823b3acc425e13c8a2dc9dbca4c321db113df193ac7f36c682ae3
+
+dkms_modules="yoga-usage-mode ${version}"
+depends="dkms"
+
+do_install() {
+	vmkdir usr/src/${pkgname}-${version}
+	vcopy Makefile usr/src/${pkgname}-${version}
+	vcopy ${FILESDIR}/dkms.conf usr/src/${pkgname}-${version}
+	vcopy "*.c" usr/src/${pkgname}-${version}
+}
