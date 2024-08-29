@@ -5,6 +5,8 @@ SOURCE=$(dirname "$0")
 packages=(
  "devkitpro-pacman"
  "yoga-usage-mode"
+ "rpi-kernel-rp4"
+ "rpi-kernel-rp4-headers"
 )
 
 if [ -z "$SOURCE" ]; then
@@ -33,7 +35,7 @@ if [ -d "$SOURCE/void-packages" ]; then
 else
 	echo '=> Cloning void-packages... '
 	rm void-packages &>/dev/null
-	git clone https://github.com/void-linux/void-packages "$SOURCE/void-packages"
+	git clone --depth=1 https://github.com/void-linux/void-packages "$SOURCE/void-packages"
 fi
 
 popd &>/dev/null
