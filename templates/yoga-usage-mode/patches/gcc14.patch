@@ -1,0 +1,22 @@
+From f42cf89399c1d0a78a2461bc2460176a811e3486 Mon Sep 17 00:00:00 2001
+From: Nicolas Derumigny <nderumigny@gmail.com>
+Date: Sat, 21 Dec 2024 15:26:35 +0100
+Subject: [PATCH] fix(type): fix compilation on latest arch
+
+---
+ yoga-usage-mode.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/yoga-usage-mode.c b/yoga-usage-mode.c
+index d6ab4d1..46a638b 100644
+--- a/yoga-usage-mode.c
++++ b/yoga-usage-mode.c
+@@ -129,7 +129,7 @@ static int setup_input_dev(void)
+     return 0;
+ }
+ 
+-static void wmi_notify(u32 value, void *context)
++static void wmi_notify(union acpi_object *value, void *context)
+ {
+     pr_debug("Yoga Mode Change event received\n");
+     get_and_report_usage_mode();

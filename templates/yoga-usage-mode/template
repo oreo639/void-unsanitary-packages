@@ -2,7 +2,7 @@
 pkgname=yoga-usage-mode
 version=0
 _gitVer=3ada633415a005269b8baa28353c5be0a37f3360
-revision=2
+revision=3
 archs="i686 x86_64*"
 wrksrc=yoga-usage-mode-${_gitVer}
 short_desc="ACPI driver Linux kernel module for Yoga to detect SW_TABLET_MODE"
